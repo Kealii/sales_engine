@@ -1,15 +1,19 @@
 require_relative 'item'
 class ItemRepository
-  attr_reader :item, :all_items, :sales_engine
+  attr_reader :items, :all_items, :sales_engine
 
   def initialize(csvtable, sales_engine = "")
-    @item = csvtable
+    @items = csvtable
     @all_items = make_items
     @sales_engine = sales_engine
   end
 
+  def inspect
+    "#<#{self.class} #{@items.size} rows>"
+  end
+
   def make_items
-    item.by_row.map do |row|
+    items.by_row.map do |row|
       Item.new(row[:id],
                row[:name],
                row[:description],

@@ -8,6 +8,10 @@ class InvoiceRepository
     @sales_engine = sales_engine
   end
 
+  def inspect
+    "#<#{self.class} #{@invoices.size} rows>"
+  end
+
   def make_invoices
     invoices.by_row.map do |row|
       Invoice.new(row[:id],

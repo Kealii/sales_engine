@@ -15,9 +15,9 @@ class Invoice
                  updated_at,
                  invoice_repository = "")
 
-    @id          = id
-    @customer_id = customer_id
-    @merchant_id = merchant_id
+    @id          = id.to_i
+    @customer_id = customer_id.to_i
+    @merchant_id = merchant_id.to_i
     @status      = status
     @created_at  = created_at
     @updated_at  = updated_at

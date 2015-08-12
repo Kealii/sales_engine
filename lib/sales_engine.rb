@@ -20,7 +20,7 @@ class SalesEngine
     @path = path
     startup
   end
-
+  
   def parse(file)
     CSV.read "#{@path}/#{file}",
     headers: true, header_converters: :symbol

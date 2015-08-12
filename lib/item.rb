@@ -17,17 +17,17 @@ class Item
                  updated_at,
                  item_repository = "")
 
-    @id          = id
+    @id          = id.to_i
     @name        = name
     @description = description
-    @unit_price  = unit_price
-    @merchant_id = merchant_id
+    @unit_price  = BigDecimal.new(unit_price)/100
+    @merchant_id = merchant_id.to_i
     @created_at  = created_at
     @updated_at  = updated_at
     @item_repository   = item_repository
   end
 
-  def invoice_item
+  def invoice_items
     item_repository.find_all_invoice_items_by_item_id(id)
   end
 

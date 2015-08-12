@@ -8,9 +8,20 @@ class TransactionRepository
     @sales_engine = sales_engine
   end
 
+  def inspect
+    "#<#{self.class} #{@transactions.size} rows>"
+  end
+
   def make_transactions
     transactions.by_row.map do |row|
-      Transaction.new(row[:id], row[:invoice_id], row[:credit_card_number], row[:credit_card_expiration_date], row[:result], row[:created_at], row[:updated_at], self)
+      Transaction.new(row[:id],
+                      row[:invoice_id],
+                      row[:credit_card_number],
+                      row[:credit_card_expiration_date],
+                      row[:result],
+                      row[:created_at],
+                      row[:updated_at],
+                      self)
     end
   end
 

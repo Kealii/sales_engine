@@ -16,9 +16,9 @@ class InvoiceItem
                  created_at,
                  updated_at,
                  invoice_item_repository = "")
-    @id = id
-    @item_id = item_id
-    @invoice_id = invoice_id
+    @id = id.to_i
+    @item_id = item_id.to_i
+    @invoice_id = invoice_id.to_i
     @quantity = quantity.to_i
     @unit_price = BigDecimal.new(unit_price.to_i)/100
     @created_at = created_at

@@ -8,6 +8,10 @@ class CustomerRepository
     @sales_engine = sales_engine
   end
 
+  def inspect
+    "#<#{self.class} #{@custmomers.size} rows>"
+  end
+
   def make_customers
     customers.by_row.map do |row|
       Customer.new(row[:id],

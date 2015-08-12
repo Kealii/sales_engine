@@ -8,6 +8,10 @@ class MerchantRepository
     @sales_engine = sales_engine
   end
 
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
+  end
+
   def make_merchants
     merchants.by_row.map do |row|
       Merchant.new(row[:id],
@@ -67,9 +71,9 @@ class MerchantRepository
   end
 
   def all_transactions(invoice_id)
-      sales_engine.all_transactions(invoice_id)
+    sales_engine.all_transactions(invoice_id)
   end
-  
+
   def find_all_invoices_by_invoice_id(id)
     sales_engine.find_all_invoices_by_id(id)
   end

@@ -16,8 +16,8 @@ class Transaction
                  created_at,
                  updated_at,
                  transaction_repository = "")
-    @id = id
-    @invoice_id = invoice_id
+    @id = id.to_i
+    @invoice_id = invoice_id.to_i
     @credit_card_number = credit_card_number
     @credit_card_expiration_date = credit_card_expiration_date
     @result = result
