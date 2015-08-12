@@ -83,7 +83,7 @@ class MerchantRepository
   end
 
   def all_merchant_revenues
-    revenues = all.map{|merchant| {merchant => merchant.revenue}}
+    all.map{|merchant| {merchant => merchant.revenue}}
   end
 
   def sorted_merchant_revenues
@@ -95,4 +95,11 @@ class MerchantRepository
       merchant_data.keys
     end[0..(x-1)]
   end
+
+  def revenue(date)
+    all.flat_map do |merchant|
+      merchant.revenue_by_date(date) == nil ? 0 : merchant.revenue_by_date(date)
+    end.inject(:+)
+  end
+
 end
