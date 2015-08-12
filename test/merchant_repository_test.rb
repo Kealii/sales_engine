@@ -146,7 +146,7 @@ class TestMerchantRepository < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     merch_repo = engine.merchant_repository
     assert_equal "Higgs Boson", merch_repo.sorted_merchant_revenues.first.keys.first.name
-    assert_equal "Schroeder-Jerde", merch_repo.sorted_merchant_revenues.last.keys.first.name
+    assert_equal "EA Sucks", merch_repo.sorted_merchant_revenues.last.keys.first.name
   end
 
   def test_most_revenue_method_returns_correct_merchants
@@ -154,6 +154,27 @@ class TestMerchantRepository < Minitest::Test
     merch_repo = engine.merchant_repository
     assert_equal 3, merch_repo.most_revenue(3).count
     assert_equal "Higgs Boson", merch_repo.most_revenue(3).first.name
+  end
+
+  def test_merchants_with_item_quantities_returns_merchants_and_revenues
+    engine = SalesEngine.new("./data/fixtures")
+    merch_repo = engine.merchant_repository
+    assert_equal 7, merch_repo.merchants_with_item_quantities.count
+    assert_equal Hash, merch_repo.merchants_with_item_quantities.first.class
+  end
+
+  def test_sorted_merchant_items_sorts_merchants_by_items_sold
+    engine = SalesEngine.new("./data/fixtures")
+    merch_repo = engine.merchant_repository
+    assert_equal "Higgs Boson", merch_repo.sorted_merchant_items.first.first.first.name
+    assert_equal "EA Sucks", merch_repo.sorted_merchant_items.last.first.first.name
+  end
+
+  def test_most_revenue_method_returns_correct_merchants
+    engine = SalesEngine.new("./data/fixtures")
+    merch_repo = engine.merchant_repository
+    assert_equal "Higgs Boson", merch_repo.most_items(3).first.name
+    assert_equal "Willms and Sons", merch_repo.most_items(3).last.name
   end
 
 end

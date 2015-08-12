@@ -78,4 +78,10 @@ class Merchant
      invoice_item.total
    end.inject(:+)
  end
+
+ def total_quantities
+   successful_invoice_items.flat_map do |invoice_item|
+     invoice_item.quantity
+   end.inject(:+)
+ end
 end

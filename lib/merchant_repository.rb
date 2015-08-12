@@ -87,7 +87,7 @@ class MerchantRepository
   end
 
   def sorted_merchant_revenues
-    all_merchant_revenues.sort_by {|merchant| merchant.values[0].to_i}.reverse
+    all_merchant_revenues.sort_by {|merchant| -(merchant.values[0].to_i)}
   end
 
   def most_revenue(x)
@@ -100,6 +100,21 @@ class MerchantRepository
     all.flat_map do |merchant|
       merchant.revenue_by_date(date) == nil ? 0 : merchant.revenue_by_date(date)
     end.inject(:+)
+  end
+
+  def merchants_with_item_quantities
+    all.flat_map {|merchant| {merchant => merchant.total_quantities}}
+  end
+
+  def sorted_merchant_items
+    merchants_with_item_quantities.sort_by {|merchant| -(merchant.values[0].to_i)}
+  end
+
+  def most_items(x)
+    sorted_merchant_items.flat_map do |merchant_data|
+      merchant_data.keys
+    end[0..(x-1)]
+
   end
 
 end
