@@ -12,7 +12,7 @@ class TestTransactionRepository < Minitest::Test
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal "1", t_repo.make_transactions.first.id
+    assert_equal 1, t_repo.make_transactions.first.id
   end
 
   def test_we_can_make_transaction_credit_card_number_with_table
@@ -26,7 +26,7 @@ class TestTransactionRepository < Minitest::Test
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal "1", t_repo.make_transactions.first.invoice_id
+    assert_equal 1, t_repo.make_transactions.first.invoice_id
   end
 
   def test_we_can_make_transaction_credit_card_experation_date_with_table
@@ -47,14 +47,14 @@ class TestTransactionRepository < Minitest::Test
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal "2012-03-27 14:54:09 UTC", t_repo.make_transactions.last.created_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), t_repo.make_transactions.last.created_at
   end
 
   def test_we_can_make_transaction_update_time_with_table
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal "2012-03-27 14:54:09 UTC", t_repo.make_transactions.last.updated_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), t_repo.make_transactions.last.updated_at
   end
 
   def test_all_transactions
@@ -74,14 +74,14 @@ class TestTransactionRepository < Minitest::Test
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal Transaction, t_repo.find_by_id("2").class
+    assert_equal Transaction, t_repo.find_by_id(2).class
   end
 
   def test_find_by_invoice_id_method
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal Transaction, t_repo.find_by_invoice_id("1").class
+    assert_equal Transaction, t_repo.find_by_invoice_id(1).class
   end
 
   def test_find_by_credit_card_number_method
@@ -109,28 +109,30 @@ class TestTransactionRepository < Minitest::Test
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal Transaction, t_repo.find_by_created_at("2012-03-27 14:54:10 UTC").class
+    date = Date.parse("2012-03-27 14:54:10 UTC")
+    assert_equal Transaction, t_repo.find_by_created_at(date).class
   end
 
   def test_find_by_updated_at_method
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal Transaction, t_repo.find_by_updated_at("2012-03-27 14:54:10 UTC").class
+    date = Date.parse("2012-03-27 14:54:10 UTC")
+    assert_equal Transaction, t_repo.find_by_updated_at(date).class
   end
 
   def test_find_all_by_id_method
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal Transaction, t_repo.find_all_by_id("2").last.class
+    assert_equal Transaction, t_repo.find_all_by_id(2).last.class
   end
 
   def test_find_all_by_invoice_id_method
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal Transaction, t_repo.find_all_by_invoice_id("1").first.class
+    assert_equal Transaction, t_repo.find_all_by_invoice_id(1).first.class
   end
 
   def test_find_all_by_credit_card_number_method
@@ -158,13 +160,15 @@ class TestTransactionRepository < Minitest::Test
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal Transaction, t_repo.find_all_by_created_at("2012-03-27 14:54:10 UTC").first.class
+    date = Date.parse("2012-03-27 14:54:10 UTC")
+    assert_equal Transaction, t_repo.find_all_by_created_at(date).first.class
   end
 
   def test_find_all_by_updated_at_method
     data = CSV.read "./data/fixtures/transactions.csv",
     headers: true, header_converters: :symbol
     t_repo = TransactionRepository.new(data)
-    assert_equal Transaction, t_repo.find_all_by_updated_at("2012-03-27 14:54:10 UTC").first.class
+    date = Date.parse("2012-03-27 14:54:10 UTC")
+    assert_equal Transaction, t_repo.find_all_by_updated_at(date).first.class
   end
 end
