@@ -285,4 +285,43 @@ class TestMerchant < Minitest::Test
                             m_repo)
     assert_equal "Joey", merchant.favorite_customer.first_name
   end
+
+  def test_pending_invoices_returns_failed_invoices
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    m_repo = engine.merchant_repository
+    merchant = Merchant.new("34",
+                            "Joe",
+                            "2012-03-27 14:53:59 UTC",
+                            "2012-03-27 14:53:59 UTC",
+                            m_repo)
+    assert_equal 13, merchant.pending_invoices.first.id
+    assert_equal Invoice, merchant.pending_invoices.first.class
+  end
+
+  def test_pending_invoices_returns_failed_invoices
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    m_repo = engine.merchant_repository
+    merchant = Merchant.new("34",
+                            "Joe",
+                            "2012-03-27 14:53:59 UTC",
+                            "2012-03-27 14:53:59 UTC",
+                            m_repo)
+    assert_equal 13, merchant.pending_invoices.first.id
+    assert_equal Invoice, merchant.pending_invoices.first.class
+  end
+
+  def test_customers_with_pending_invoices_returns_collection_of_customers
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    m_repo = engine.merchant_repository
+    merchant = Merchant.new("34",
+                            "Joe",
+                            "2012-03-27 14:53:59 UTC",
+                            "2012-03-27 14:53:59 UTC",
+                            m_repo)
+    assert_equal 2, merchant.customers_with_pending_invoices.count
+    assert_equal Customer, merchant.customers_with_pending_invoices.first.class
+  end
 end

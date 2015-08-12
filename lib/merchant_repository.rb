@@ -122,4 +122,8 @@ class MerchantRepository
     sales_engine.find_all_customers_by_customer_id(id)
   end
 
+  def find_customer_by_customer_id(id)
+    sales_engine.find_by_customer_id(id)
+  end
+
 end

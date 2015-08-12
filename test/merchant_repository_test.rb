@@ -159,7 +159,7 @@ class TestMerchantRepository < Minitest::Test
   def test_merchants_with_item_quantities_returns_merchants_and_revenues
     engine = SalesEngine.new("./data/fixtures")
     merch_repo = engine.merchant_repository
-    assert_equal 9, merch_repo.merchants_with_item_quantities.count
+    assert_equal 8, merch_repo.merchants_with_item_quantities.count
     assert_equal Hash, merch_repo.merchants_with_item_quantities.first.class
   end
 

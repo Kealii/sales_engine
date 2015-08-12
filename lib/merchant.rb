@@ -101,7 +101,13 @@ class Merchant
     sorted_customers.first
   end
 
-  def customers_with_pending_invoices
+  def pending_invoices
+    invoices - successful_invoices
+  end
 
+  def customers_with_pending_invoices
+    pending_invoices.flat_map do |invoice|
+      merchant_repository.find_customer_by_customer_id(invoice.customer_id)
+    end
   end
 end
