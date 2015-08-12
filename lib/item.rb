@@ -1,3 +1,4 @@
+require "date"
 class Item
   attr_reader :id,
               :name,
@@ -22,8 +23,8 @@ class Item
     @description = description
     @unit_price  = BigDecimal.new(unit_price)/100
     @merchant_id = merchant_id.to_i
-    @created_at  = created_at
-    @updated_at  = updated_at
+    @created_at  = Date.parse(created_at)
+    @updated_at  = Date.parse(updated_at)
     @item_repository   = item_repository
   end
 

@@ -21,8 +21,8 @@ class Transaction
     @credit_card_number = credit_card_number
     @credit_card_expiration_date = credit_card_expiration_date
     @result = result
-    @created_at = created_at
-    @updated_at = updated_at
+    @created_at = Date.parse(created_at)
+    @updated_at = Date.parse(updated_at)
     @transaction_repository = transaction_repository
   end
 

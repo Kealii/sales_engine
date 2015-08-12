@@ -1,3 +1,4 @@
+require 'date'
 class InvoiceItem
   attr_reader :id,
               :item_id,
@@ -23,8 +24,8 @@ class InvoiceItem
     @invoice_id = invoice_id.to_i
     @quantity = quantity.to_i
     @unit_price = BigDecimal.new(unit_price.to_i)/100
-    @created_at = created_at
-    @updated_at = updated_at
+    @created_at = Date.parse(created_at)
+    @updated_at = Date.parse(updated_at)
     @invoice_item_repository = invoice_item_repository
     @total = (@unit_price * @quantity)
   end

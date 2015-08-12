@@ -16,8 +16,8 @@ class Customer
     @id            = id.to_i
     @first_name    = first_name
     @last_name     = last_name
-    @created_at    = created_at
-    @updated_at    = updated_at
+    @created_at    = Date.parse(created_at)
+    @updated_at    = Date.parse(updated_at)
     @customer_repository = customer_repository
   end
 
