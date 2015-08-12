@@ -12,7 +12,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1", customer_repo.make_customers.first.id
+    assert_equal 1, customer_repo.make_customers.first.id
   end
 
   def test_we_can_make_customer_customer_id_with_table
@@ -49,7 +49,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal '1', customer_repo.all.first.id
+    assert_equal 1, customer_repo.all.first.id
   end
 
   def test_random_method
@@ -63,14 +63,14 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "Joey", customer_repo.find_by_id("1").first_name
+    assert_equal "Joey", customer_repo.find_by_id(1).first_name
   end
 
   def test_find_by_first_name_method
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     customer_repo.find_by_first_name("Joey").id
   end
 
@@ -78,7 +78,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     customer_repo.find_by_last_name("Ondricka").id
   end
 
@@ -86,7 +86,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     customer_repo.find_by_created_at("2012-03-27 14:54:09 UTC").id
   end
 
@@ -94,7 +94,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     customer_repo.find_by_updated_at("2012-03-27 14:54:09 UTC").id
   end
 
@@ -103,14 +103,14 @@ class TestCustomerRepository < Minitest::Test
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
     assert_equal "Joey",
-    customer_repo.find_all_by_id("1").first.first_name
+    customer_repo.find_all_by_id(1).first.first_name
   end
 
   def test_find_all_by_first_name_method
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     customer_repo.find_all_by_first_name("Joey").first.id
   end
 
@@ -118,7 +118,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     customer_repo.find_all_by_last_name("Ondricka").first.id
   end
 
@@ -126,7 +126,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     customer_repo.find_all_by_created_at("2012-03-27 14:54:09 UTC").first.id
   end
 
@@ -134,7 +134,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     customer_repo.find_all_by_updated_at("2012-03-27 14:54:09 UTC").first.id
   end
 

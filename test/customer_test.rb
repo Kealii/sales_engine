@@ -127,7 +127,7 @@ class TestCustomer < Minitest::Test
                             "2012-03-27 14:54:09 UTC",
                             c_repo)
     assert_equal 3, customer.successful_invoices.count
-    assert_equal "4", customer.successful_invoices.last.id
+    assert_equal 4, customer.successful_invoices.last.id
   end
 
   def test_all_successful_merchants_finds_all_merchants_with_successful_invoices
