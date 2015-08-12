@@ -172,7 +172,7 @@ class TestCustomer < Minitest::Test
     assert_equal 2, customer.sorted_merchants[1]
   end
 
-  def test_we_can_count_number_of_each_merchants_appearances
+  def test_favorite_merchant_returns_top_ranked_merchant
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     c_repo = engine.customer_repository

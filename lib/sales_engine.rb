@@ -106,4 +106,8 @@ class SalesEngine
     merchant_repository.find_all_by_id(id)
   end
 
+  def find_all_customers_by_customer_id(id)
+    customer_repository.find_all_by_id(id)
+  end
+
 end

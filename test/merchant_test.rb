@@ -235,4 +235,54 @@ class TestMerchant < Minitest::Test
     assert_equal BigDecimal, merchant.revenue(date).class
   end
 
+  def test_all_successful_customers_method_returns_collection_of_customers
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    m_repo = engine.merchant_repository
+    merchant = Merchant.new("26",
+                            "Joe",
+                            "2012-03-27 14:53:59 UTC",
+                            "2012-03-27 14:53:59 UTC",
+                            m_repo)
+    assert_equal Customer, merchant.all_successful_customers.first.class
+    assert_equal 2, merchant.all_successful_customers.count
+  end
+
+  def test_customer_appearances_returns_customers_and_count
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    m_repo = engine.merchant_repository
+    merchant = Merchant.new("26",
+                            "Joe",
+                            "2012-03-27 14:53:59 UTC",
+                            "2012-03-27 14:53:59 UTC",
+                            m_repo)
+    assert_equal Customer, merchant.customer_appearances.first[0].class
+    assert_equal 2, merchant.customer_appearances.first[1]
+  end
+
+  def test_sorted_customers_returns_highest_count_first
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    m_repo = engine.merchant_repository
+    merchant = Merchant.new("26",
+                            "Joe",
+                            "2012-03-27 14:53:59 UTC",
+                            "2012-03-27 14:53:59 UTC",
+                            m_repo)
+    assert_equal "Joey", merchant.sorted_customers.first.first_name
+    assert_equal 2, merchant.sorted_customers.last
+  end
+
+  def test_favorite_customer_returns_top_ranked_customer
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    m_repo = engine.merchant_repository
+    merchant = Merchant.new("26",
+                            "Joe",
+                            "2012-03-27 14:53:59 UTC",
+                            "2012-03-27 14:53:59 UTC",
+                            m_repo)
+    assert_equal "Joey", merchant.favorite_customer.first_name
+  end
 end

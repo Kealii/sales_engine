@@ -116,7 +116,10 @@ class MerchantRepository
     sorted_merchant_items.flat_map do |merchant_data|
       merchant_data.keys
     end[0..(x-1)]
+  end
 
+  def find_all_customers_by_customer_id(id)
+    sales_engine.find_all_customers_by_customer_id(id)
   end
 
 end

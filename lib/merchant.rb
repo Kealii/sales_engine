@@ -60,28 +60,44 @@ class Merchant
   end
 
   def revenue(date = nil)
-    if date
-      revenue_by_date(date)
-    else
-      total_revenue
-    end
+    date ? revenue_by_date(date) : total_revenue
   end
 
   def total_revenue
     successful_invoice_items.flat_map do |invoice_item|
-     invoice_item.total
-   end.inject(:+)
- end
+      invoice_item.total
+    end.inject(:+)
+  end
 
- def revenue_by_date(date)
-   successful_invoice_items_by_date(date).flat_map do |invoice_item|
-     invoice_item.total
-   end.inject(:+)
- end
+  def revenue_by_date(date)
+    successful_invoice_items_by_date(date).flat_map do |invoice_item|
+      invoice_item.total
+    end.inject(:+)
+  end
 
- def total_quantities
-   successful_invoice_items.flat_map do |invoice_item|
-     invoice_item.quantity
-   end.inject(:+)
- end
+  def total_quantities
+    successful_invoice_items.flat_map do |invoice_item|
+      invoice_item.quantity
+    end.inject(:+)
+  end
+
+  def all_successful_customers
+    successful_invoices.flat_map do |invoice|
+      merchant_repository.find_all_customers_by_customer_id(invoice.customer_id)
+    end
+  end
+
+  def customer_appearances
+    all_successful_customers.each_with_object(Hash.new(0)) do |customer, counts|
+      counts[customer] += 1
+    end
+  end
+
+  def sorted_customers
+    customer_appearances.sort_by {|k, v| -v}.flatten
+  end
+
+  def favorite_customer
+    sorted_customers.first
+  end
 end
