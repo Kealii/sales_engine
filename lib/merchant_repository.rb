@@ -81,4 +81,15 @@ class MerchantRepository
   def find_all_invoice_items_by_invoice_id(id)
     sales_engine.find_all_invoice_items_by_id(id)
   end
+
+  def all_merchant_revenues
+    revenues = all.map{|merchant| {merchant => merchant.revenue}}
+  end
+
+  def sorted_merchant_revenues
+      all_merchant_revenues.sort_by { |merchant| merchant.values[0].to_i}.reverse
+  end
+
+  def most_revenue(x)
+  end
 end
