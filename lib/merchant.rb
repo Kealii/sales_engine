@@ -100,4 +100,8 @@ class Merchant
   def favorite_customer
     sorted_customers.first
   end
+
+  def customers_with_pending_invoices
+
+  end
 end

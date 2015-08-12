@@ -40,7 +40,7 @@ class TestInvoiceRepository < Minitest::Test
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal Date.parse("2012-03-24 15:54:10 UTC"),
+    assert_equal Date.parse("2012-03-10 15:54:10 UTC"),
     invoice_repo.make_invoices.last.created_at
   end
 
@@ -48,7 +48,7 @@ class TestInvoiceRepository < Minitest::Test
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal Date.parse("2012-03-24 15:54:10 UTC"),
+    assert_equal Date.parse("2012-03-10 15:54:10 UTC"),
     invoice_repo.make_invoices.last.updated_at
   end
 
