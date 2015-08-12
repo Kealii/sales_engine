@@ -9,7 +9,7 @@ class TestInvoiceItem < Minitest::Test
                                   "2196",
                                   "2012-03-27 14:54:09 UTC",
                                   "2012-03-27 14:54:09 UTC")
-    assert_equal "4", invoice_item.id
+    assert_equal 4, invoice_item.id
   end
 
   def test_invoice_item_has_item_id
@@ -20,7 +20,7 @@ class TestInvoiceItem < Minitest::Test
                                   "2196",
                                   "2012-03-27 14:54:09 UTC",
                                   "2012-03-27 14:54:09 UTC")
-    assert_equal "535", invoice_item.item_id
+    assert_equal 535, invoice_item.item_id
   end
 
   def test_invoice_item_has_invoice_id
@@ -31,7 +31,7 @@ class TestInvoiceItem < Minitest::Test
                                   "2196",
                                   "2012-03-27 14:54:09 UTC",
                                   "2012-03-27 14:54:09 UTC")
-    assert_equal "1", invoice_item.invoice_id
+    assert_equal 1, invoice_item.invoice_id
   end
 
   def test_invoice_item_has_quantity
@@ -90,7 +90,7 @@ class TestInvoiceItem < Minitest::Test
                                   "2012-03-27 14:54:09 UTC",
                                   "2012-03-27 14:54:09 UTC",
                                   i_i_repo)
-    assert_equal "3", invoice_item.invoice.id
+    assert_equal 3, invoice_item.invoice.id
   end
 
   def test_invoice_returns_nil_if_no_match
@@ -136,5 +136,27 @@ class TestInvoiceItem < Minitest::Test
                                   "2012-03-27 14:54:09 UTC",
                                   i_i_repo)
     assert_equal nil, invoice_item.item
+  end
+
+  def test_total_returns_correct_dollar_amount
+    invoice_item = InvoiceItem.new("4",
+                                  "535",
+                                  "1",
+                                  "3",
+                                  "2196",
+                                  "2012-03-27 14:54:09 UTC",
+                                  "2012-03-27 14:54:09 UTC")
+    assert_equal 65.88, invoice_item.total
+  end
+
+  def test_total_returns_correct_dollar_amount_for_large_value
+    invoice_item = InvoiceItem.new("4",
+                                  "535",
+                                  "1",
+                                  "10",
+                                  "219606",
+                                  "2012-03-27 14:54:09 UTC",
+                                  "2012-03-27 14:54:09 UTC")
+    assert_equal 21960.60, invoice_item.total
   end
 end

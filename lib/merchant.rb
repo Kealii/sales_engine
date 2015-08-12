@@ -67,7 +67,7 @@ class Merchant
 
   def total_revenue
     successful_invoice_items.flat_map do |invoice_item|
-     invoice_item.unit_price * invoice_item.quantity
+     invoice_item.total
    end.inject(:+)
  end
 

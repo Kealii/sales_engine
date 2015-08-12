@@ -6,7 +6,8 @@ class InvoiceItem
               :unit_price,
               :created_at,
               :updated_at,
-              :invoice_item_repository
+              :invoice_item_repository,
+              :total
 
   def initialize(id,
                  item_id,
@@ -16,14 +17,16 @@ class InvoiceItem
                  created_at,
                  updated_at,
                  invoice_item_repository = "")
+
     @id = id.to_i
     @item_id = item_id.to_i
     @invoice_id = invoice_id.to_i
     @quantity = quantity.to_i
-    @unit_price = BigDecimal.new(unit_price)/100
+    @unit_price = BigDecimal.new(unit_price.to_i)/100
     @created_at = created_at
     @updated_at = updated_at
     @invoice_item_repository = invoice_item_repository
+    @total = (@unit_price * @quantity)
   end
 
   def invoice
