@@ -12,7 +12,7 @@ class TestMerchantRepository < Minitest::Test
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "1", merch_repo.make_merchants.first.id
+    assert_equal 1, merch_repo.make_merchants.first.id
   end
 
   def test_we_can_make_merchant_name_with_table
@@ -56,21 +56,21 @@ class TestMerchantRepository < Minitest::Test
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "Schroeder-Jerde", merch_repo.find_by_id("1").name
+    assert_equal "Schroeder-Jerde", merch_repo.find_by_id(1).name
   end
 
   def test_find_by_name_method
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "1", merch_repo.find_by_name("Schroeder-Jerde").id
+    assert_equal 1, merch_repo.find_by_name("Schroeder-Jerde").id
   end
 
   def test_find_by_created_at_method
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
                  merch_repo.find_by_created_at("2012-03-27 14:53:59 UTC").id
   end
 
@@ -78,7 +78,7 @@ class TestMerchantRepository < Minitest::Test
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
                  merch_repo.find_by_updated_at("2012-03-27 14:53:59 UTC").id
   end
 
@@ -87,21 +87,21 @@ class TestMerchantRepository < Minitest::Test
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
     assert_equal "Klein, Rempel and Jones",
-                 merch_repo.find_all_by_id("2").first.name
+                 merch_repo.find_all_by_id(2).first.name
   end
 
   def test_find_all_by_name_method
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "1", merch_repo.find_all_by_name("Schroeder-Jerde").first.id
+    assert_equal 1, merch_repo.find_all_by_name("Schroeder-Jerde").first.id
   end
 
   def test_find_all_by_created_at_method
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
           merch_repo.find_all_by_created_at("2012-03-27 14:53:59 UTC").first.id
   end
 
@@ -109,7 +109,7 @@ class TestMerchantRepository < Minitest::Test
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     merch_repo.find_all_by_updated_at("2012-03-27 14:53:59 UTC").first.id
   end
 
@@ -117,14 +117,14 @@ class TestMerchantRepository < Minitest::Test
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "1",
+    assert_equal 1,
     merch_repo.find_all_by_updated_at("2012-03-27 14:53:59 UTC").first.id
   end
 
   def test_all_transactions_contains_invoices
     engine = SalesEngine.new("./data/fixtures")
     merch_repo = engine.merchant_repository
-    assert_equal "1", merch_repo.all_transactions("1").first.id
+    assert_equal 1, merch_repo.all_transactions(1).first.id
   end
 
 end

@@ -10,7 +10,7 @@ class TestMerchant < Minitest::Test
                             "Joe",
                             "2012-03-27 14:53:59 UTC",
                             "2012-03-27 14:53:59 UTC")
-    assert_equal "1", merchant.id
+    assert_equal 1, merchant.id
   end
 
   def test_merchant_has_name
