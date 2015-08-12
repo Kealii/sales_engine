@@ -3,7 +3,7 @@ require_relative "test_helper"
 class TestTransaction < Minitest::Test
   def test_transaction_has_id
     transaction = Transaction.new("4", "535", "1", "3", "2196", "2012-03-27 14:54:09 UTC", "2012-03-27 14:54:09 UTC")
-    assert_equal "4", transaction.id
+    assert_equal 4, transaction.id
   end
 
   def test_transaction_has_credit_card_number
@@ -13,7 +13,7 @@ class TestTransaction < Minitest::Test
 
   def test_transaction_has_invoice_id
     transaction = Transaction.new("4", "535", "1", "3", "2196", "2012-03-27 14:54:09 UTC", "2012-03-27 14:54:09 UTC")
-    assert_equal "535", transaction.invoice_id
+    assert_equal 535, transaction.invoice_id
   end
 
   def test_transaction_has_credit_card_expiration_date
@@ -28,12 +28,12 @@ class TestTransaction < Minitest::Test
 
   def test_transaction_has_creation_date
     transaction = Transaction.new("4", "535", "1", "3", "2196", "2012-03-27 14:54:09 UTC", "2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", transaction.created_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), transaction.created_at
   end
 
   def test_transaction_has_updated_date
     transaction = Transaction.new("4", "535", "1", "3", "2196", "2012-03-27 14:54:09 UTC", "2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", transaction.updated_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), transaction.updated_at
   end
 
   def test_invocie_method
