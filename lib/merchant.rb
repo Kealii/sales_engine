@@ -30,7 +30,7 @@ class Merchant
   end
 
   def successful_transactions
-    all_transactions.flat_map {|transaction| transaction if transaction.success?}
+    all_transactions.select {|transaction| transaction.success?}
   end
 
   def successful_invoices
@@ -67,13 +67,13 @@ class Merchant
 
   def total_revenue
     successful_invoice_items.flat_map do |invoice_item|
-     (invoice_item.unit_price * invoice_item.quantity)
+     invoice_item.unit_price * invoice_item.quantity
    end.inject(:+)
  end
 
  def revenue_by_date(date)
-    successful_invoice_items_by_date(date).flat_map do |invoice_item|
-      (invoice_item.unit_price * invoice_item.quantity)
-    end.inject(:+)
+   successful_invoice_items_by_date(date).flat_map do |invoice_item|
+     (invoice_item.unit_price * invoice_item.quantity)
+   end.inject(:+)
  end
 end
