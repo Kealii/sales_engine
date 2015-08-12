@@ -34,7 +34,7 @@ class TestCustomer < Minitest::Test
                             "Ondricka",
                             "2012-03-27 14:54:09 UTC",
                             "2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", customer.created_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), customer.created_at
   end
 
   def test_customer_has_updated_date
@@ -43,7 +43,7 @@ class TestCustomer < Minitest::Test
                             "Ondricka",
                             "2012-03-27 14:54:09 UTC",
                             "2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", customer.updated_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), customer.updated_at
   end
 
   def test_invoices_method

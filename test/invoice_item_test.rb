@@ -64,7 +64,8 @@ class TestInvoiceItem < Minitest::Test
                                   "2196",
                                   "2012-03-27 14:54:09 UTC",
                                   "2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", invoice_item.created_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"),
+    invoice_item.created_at
   end
 
   def test_invoice_item_has_updated_date
@@ -75,7 +76,8 @@ class TestInvoiceItem < Minitest::Test
                                   "2196",
                                   "2012-03-27 14:54:09 UTC",
                                   "2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", invoice_item.updated_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"),
+    invoice_item.updated_at
   end
 
   def test_invoice_returns_a_single_invoice

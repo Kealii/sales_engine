@@ -18,13 +18,13 @@ class Item
                  updated_at,
                  item_repository = "")
 
-    @id          = id.to_i
-    @name        = name
-    @description = description
-    @unit_price  = BigDecimal.new(unit_price)/100
-    @merchant_id = merchant_id.to_i
-    @created_at  = Date.parse(created_at)
-    @updated_at  = Date.parse(updated_at)
+    @id                = id.to_i
+    @name              = name
+    @description       = description
+    @unit_price        = BigDecimal.new(unit_price.to_i)/100
+    @merchant_id       = merchant_id.to_i
+    @created_at        = Date.parse(created_at)
+    @updated_at        = Date.parse(updated_at)
     @item_repository   = item_repository
   end
 

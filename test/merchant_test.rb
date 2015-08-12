@@ -26,7 +26,7 @@ class TestMerchant < Minitest::Test
                             "Joe",
                             "2012-03-27 14:53:59 UTC",
                             "2012-03-27 14:53:59 UTC")
-    assert_equal "2012-03-27 14:53:59 UTC", merchant.created_at
+    assert_equal Date.parse("2012-03-27 14:53:59 UTC"), merchant.created_at
   end
 
   def test_merchant_has_updated_date
@@ -34,7 +34,7 @@ class TestMerchant < Minitest::Test
                             "Joe",
                             "2012-03-27 14:53:59 UTC",
                             "2012-03-27 14:53:59 UTC")
-    assert_equal "2012-03-27 14:53:59 UTC", merchant.updated_at
+    assert_equal Date.parse("2012-03-27 14:53:59 UTC"), merchant.updated_at
   end
 
   def test_item_method_returns_list_of_items
@@ -218,7 +218,8 @@ class TestMerchant < Minitest::Test
                             "2012-03-27 14:53:59 UTC",
                             "2012-03-27 14:53:59 UTC",
                             m_repo)
-    assert_equal 2789.84, merchant.revenue("2012-03-12 05:54:09 UTC")
+    date = Date.parse("2012-03-12 05:54:09 UTC")
+    assert_equal 2789.84, merchant.revenue(date)
   end
 
   def test_revenue_by_date_is_a_bigdecimal_object
@@ -230,7 +231,8 @@ class TestMerchant < Minitest::Test
                             "2012-03-27 14:53:59 UTC",
                             "2012-03-27 14:53:59 UTC",
                             m_repo)
-    assert_equal BigDecimal, merchant.revenue("2012-03-12 05:54:09 UTC").class
+    date = Date.parse("2012-03-12 05:54:09 UTC")
+    assert_equal BigDecimal, merchant.revenue(date).class
   end
 
 end

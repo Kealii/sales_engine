@@ -36,7 +36,8 @@ class Merchant
 
   def successful_invoices
     successful_transactions.flat_map do |transaction|
-      merchant_repository.find_all_invoices_by_invoice_id(transaction.invoice_id)
+      invoice_id = transaction.invoice_id
+      merchant_repository.find_all_invoices_by_invoice_id(invoice_id)
     end
   end
 
@@ -74,7 +75,7 @@ class Merchant
 
  def revenue_by_date(date)
    successful_invoice_items_by_date(date).flat_map do |invoice_item|
-     (invoice_item.unit_price * invoice_item.quantity)
+     invoice_item.total
    end.inject(:+)
  end
 end

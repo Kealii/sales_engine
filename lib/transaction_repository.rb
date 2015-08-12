@@ -26,11 +26,11 @@ class TransactionRepository
   end
 
   def all
-  	all_transactions
+    all_transactions
   end
 
   def random
-  	all.sample
+    all.sample
   end
 
   def find_by_id(id)
@@ -41,12 +41,14 @@ class TransactionRepository
     all.detect {|transaction| transaction.invoice_id == invoice_id}
   end
 
-  def find_by_credit_card_number(credit_card_number)
-    all.detect {|transaction| transaction.credit_card_number == credit_card_number}
+  def find_by_credit_card_number(card_num)
+    all.detect {|transaction| transaction.credit_card_number == card_num}
   end
 
-  def find_by_credit_card_expiration_date(credit_card_expiration_date)
-    all.detect {|transaction| transaction.credit_card_expiration_date == credit_card_expiration_date}
+  def find_by_credit_card_expiration_date(card_date)
+    all.detect do |transaction|
+    transaction.credit_card_expiration_date == card_date
+  end
   end
 
   def find_by_result(result)
@@ -69,12 +71,14 @@ class TransactionRepository
     all.select {|transaction| transaction.invoice_id == invoice_id}
   end
 
-  def find_all_by_credit_card_number(credit_card_number)
-    all.select {|transaction| transaction.credit_card_number == credit_card_number}
+  def find_all_by_credit_card_number(card_number)
+    all.select {|transaction| transaction.credit_card_number == card_number}
   end
 
-  def find_all_by_credit_card_expiration_date(credit_card_expiration_date)
-    all.select {|transaction| transaction.credit_card_expiration_date == credit_card_expiration_date}
+  def find_all_by_credit_card_expiration_date(card_date)
+    all.select do |transaction|
+      transaction.credit_card_expiration_date == card_date
+    end
   end
 
   def find_all_by_result(result)

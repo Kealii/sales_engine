@@ -37,7 +37,8 @@ class Customer
 
   def successful_invoices
     successful_transactions.flat_map do |transaction|
-      customer_repository.find_all_invoices_by_invoice_id(transaction.invoice_id)
+      invoice_id = transaction.invoice_id
+      customer_repository.find_all_invoices_by_invoice_id(invoice_id)
     end
   end
 

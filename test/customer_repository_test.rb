@@ -33,7 +33,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "2012-03-27 14:54:10 UTC",
+    assert_equal Date.parse("2012-03-27 14:54:10 UTC"),
     customer_repo.make_customers.last.created_at
   end
 
@@ -41,7 +41,7 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
-    assert_equal "2012-03-27 14:54:10 UTC",
+    assert_equal Date.parse("2012-03-27 14:54:10 UTC"),
     customer_repo.make_customers.last.updated_at
   end
 
@@ -86,16 +86,18 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
+    date = Date.parse("2012-03-27 14:54:09 UTC")
     assert_equal 1,
-    customer_repo.find_by_created_at("2012-03-27 14:54:09 UTC").id
+    customer_repo.find_by_created_at(date).id
   end
 
   def test_find_by_updated_at_method
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
+    date = Date.parse("2012-03-27 14:54:09 UTC")
     assert_equal 1,
-    customer_repo.find_by_updated_at("2012-03-27 14:54:09 UTC").id
+    customer_repo.find_by_updated_at(date).id
   end
 
   def test_find_all_by_id_method
@@ -126,16 +128,18 @@ class TestCustomerRepository < Minitest::Test
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
+    date = Date.parse("2012-03-27 14:54:09 UTC")
     assert_equal 1,
-    customer_repo.find_all_by_created_at("2012-03-27 14:54:09 UTC").first.id
+    customer_repo.find_all_by_created_at(date).first.id
   end
 
   def test_find_all_by_updated_at_method
     data = CSV.read "./data/fixtures/customers.csv",
     headers: true, header_converters: :symbol
     customer_repo = CustomerRepository.new(data)
+    date = Date.parse("2012-03-27 14:54:09 UTC")
     assert_equal 1,
-    customer_repo.find_all_by_updated_at("2012-03-27 14:54:09 UTC").first.id
+    customer_repo.find_all_by_updated_at(date).first.id
   end
 
 end

@@ -1,6 +1,7 @@
 require 'csv'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'date'
 require './lib/sales_engine'
 require './lib/merchant_repository'
 require './lib/invoice_repository'

@@ -48,7 +48,7 @@ class TestInvoiceItemRepository < Minitest::Test
     data = CSV.read "./data/fixtures/invoice_items.csv",
     headers: true, header_converters: :symbol
     i_i_repo = InvoiceItemRepository.new(data)
-    assert_equal "2012-03-27 14:56:09 UTC",
+    assert_equal Date.parse("2012-03-27 14:56:09 UTC"),
     i_i_repo.make_invoice_items.last.created_at
   end
 
@@ -56,7 +56,7 @@ class TestInvoiceItemRepository < Minitest::Test
     data = CSV.read "./data/fixtures/invoice_items.csv",
     headers: true, header_converters: :symbol
     i_i_repo = InvoiceItemRepository.new(data)
-    assert_equal "2012-03-27 14:54:09 UTC",
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"),
     i_i_repo.make_invoice_items.last.updated_at
   end
 
@@ -113,16 +113,18 @@ class TestInvoiceItemRepository < Minitest::Test
     data = CSV.read "./data/fixtures/invoice_items.csv",
     headers: true, header_converters: :symbol
     i_i_repo = InvoiceItemRepository.new(data)
+    date = Date.parse("2012-03-27 14:54:09 UTC")
     assert_equal InvoiceItem,
-    i_i_repo.find_by_created_at("2012-03-27 14:54:09 UTC").class
+    i_i_repo.find_by_created_at(date).class
   end
 
   def test_find_by_updated_at_method
     data = CSV.read "./data/fixtures/invoice_items.csv",
     headers: true, header_converters: :symbol
     i_i_repo = InvoiceItemRepository.new(data)
+    date = Date.parse("2012-03-27 14:54:09 UTC")
     assert_equal InvoiceItem,
-    i_i_repo.find_by_updated_at("2012-03-27 14:54:09 UTC").class
+    i_i_repo.find_by_updated_at(date).class
   end
 
   def test_find_all_by_id_method
@@ -164,15 +166,17 @@ class TestInvoiceItemRepository < Minitest::Test
     data = CSV.read "./data/fixtures/invoice_items.csv",
     headers: true, header_converters: :symbol
     i_i_repo = InvoiceItemRepository.new(data)
+    date = Date.parse("2012-03-27 14:54:09 UTC")
     assert_equal 1,
-    i_i_repo.find_all_by_created_at("2012-03-27 14:54:09 UTC").first.id
+    i_i_repo.find_all_by_created_at(date).first.id
   end
 
   def test_find_all_by_updated_at_method
     data = CSV.read "./data/fixtures/invoice_items.csv",
     headers: true, header_converters: :symbol
     i_i_repo = InvoiceItemRepository.new(data)
+    date = Date.parse("2012-03-27 14:54:09 UTC")
     assert_equal 1,
-    i_i_repo.find_all_by_updated_at("2012-03-27 14:54:09 UTC").first.id
+    i_i_repo.find_all_by_updated_at(date).first.id
   end
 end

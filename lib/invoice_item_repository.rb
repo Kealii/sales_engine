@@ -27,11 +27,11 @@ class InvoiceItemRepository
   end
 
   def all
-  	all_invoice_items
+    all_invoice_items
   end
 
   def random
-  	all_invoice_items.sample
+    all_invoice_items.sample
   end
 
     def find_by_id(id)

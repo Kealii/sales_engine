@@ -8,7 +8,7 @@ class TestInvoice < Minitest::Test
                           "shipped",
                           "2012-03-25 09:54:09 UTC",
                           "2012-03-25 09:54:09 UTC")
-    assert_equal "1", invoice.id
+    assert_equal 1, invoice.id
   end
 
   def test_invoice_has_customer_id
@@ -18,7 +18,7 @@ class TestInvoice < Minitest::Test
                           "shipped",
                           "2012-03-25 09:54:09 UTC",
                           "2012-03-25 09:54:09 UTC")
-    assert_equal "1", invoice.customer_id
+    assert_equal 1, invoice.customer_id
   end
 
   def test_invoice_has_merchant_id
@@ -28,7 +28,7 @@ class TestInvoice < Minitest::Test
                           "shipped",
                           "2012-03-25 09:54:09 UTC",
                           "2012-03-25 09:54:09 UTC")
-    assert_equal "26", invoice.merchant_id
+    assert_equal 26, invoice.merchant_id
   end
 
   def test_invoice_has_status
@@ -48,7 +48,8 @@ class TestInvoice < Minitest::Test
                           "shipped",
                           "2012-03-25 09:54:09 UTC",
                           "2012-03-25 09:54:09 UTC")
-    assert_equal "2012-03-25 09:54:09 UTC", invoice.created_at
+    assert_equal Date.parse("2012-03-25 09:54:09 UTC"),
+    invoice.created_at
   end
 
   def test_invoice_has_updated_date
@@ -58,7 +59,8 @@ class TestInvoice < Minitest::Test
                           "shipped",
                           "2012-03-25 09:54:09 UTC",
                           "2012-03-25 09:54:09 UTC")
-    assert_equal "2012-03-25 09:54:09 UTC", invoice.updated_at
+    assert_equal Date.parse("2012-03-25 09:54:09 UTC"),
+    invoice.updated_at
   end
 
   def test_transactions_method_returns_list_of_transactions
