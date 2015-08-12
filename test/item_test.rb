@@ -42,7 +42,7 @@ class TestItem < Minitest::Test
                     1,
                     "2012-03-27 14:53:59 UTC",
                     "2012-03-27 14:53:59 UTC")
-    assert_equal 75107, item.unit_price
+    assert_equal BigDecimal, item.unit_price.class
   end
 
   def test_item_has_merchant_id
@@ -64,7 +64,7 @@ class TestItem < Minitest::Test
                     1,
                     "2012-03-27 14:53:59 UTC",
                     "2012-03-27 14:53:59 UTC")
-    assert_equal "2012-03-27 14:53:59 UTC", item.created_at
+    assert_equal Date.parse("2012-03-27 14:53:59 UTC"), item.created_at
   end
 
   def test_item_has_updated_date
@@ -75,7 +75,7 @@ class TestItem < Minitest::Test
                     1,
                     "2012-03-27 14:53:59 UTC",
                     "2012-03-27 14:53:59 UTC")
-    assert_equal "2012-03-27 14:53:59 UTC", item.updated_at
+    assert_equal Date.parse("2012-03-27 14:53:59 UTC"), item.updated_at
   end
 
   def test_invoice_item_method
@@ -90,7 +90,7 @@ class TestItem < Minitest::Test
                     "2012-03-27 14:53:59 UTC",
                     "2012-03-27 14:53:59 UTC",
                     i_repo)
-    assert_equal 2, item.invoice_item.count
+    assert_equal 2, item.invoice_items.count
   end
 
   def test_invoice_item_method_returns_empty_array_if_no_matches
@@ -105,7 +105,7 @@ class TestItem < Minitest::Test
                     "2012-03-27 14:53:59 UTC",
                     "2012-03-27 14:53:59 UTC",
                     i_repo)
-    assert_equal [], item.invoice_item
+    assert_equal [], item.invoice_items
   end
 
   def test_merchant_method
