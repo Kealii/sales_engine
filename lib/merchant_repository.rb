@@ -87,9 +87,12 @@ class MerchantRepository
   end
 
   def sorted_merchant_revenues
-      all_merchant_revenues.sort_by { |merchant| merchant.values[0].to_i}.reverse
+    all_merchant_revenues.sort_by {|merchant| merchant.values[0].to_i}.reverse
   end
 
   def most_revenue(x)
+    sorted_merchant_revenues.flat_map do |merchant_data|
+      merchant_data.keys
+    end[0..(x-1)]
   end
 end

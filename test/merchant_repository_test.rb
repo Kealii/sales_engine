@@ -147,15 +147,13 @@ class TestMerchantRepository < Minitest::Test
     merch_repo = engine.merchant_repository
     assert_equal "Higgs Boson", merch_repo.sorted_merchant_revenues.first.keys.first.name
     assert_equal "Schroeder-Jerde", merch_repo.sorted_merchant_revenues.last.keys.first.name
-    assert_equal "", merch_repo.sorted_merchant_revenues
   end
 
-  def test_most_revenue_method_returns_sorted_merchants
-    skip
+  def test_most_revenue_method_returns_correct_merchants
     engine = SalesEngine.new("./data/fixtures")
     merch_repo = engine.merchant_repository
-    assert_equal "", merch_repo.all_merchant_revenues.first.name
-    assert_equal "", merch_repo.all_merchant_revenues.last.name
+    assert_equal 3, merch_repo.most_revenue(3).count
+    assert_equal "Higgs Boson", merch_repo.most_revenue(3).first.name
   end
 
 end
