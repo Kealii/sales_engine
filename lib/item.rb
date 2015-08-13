@@ -35,4 +35,9 @@ class Item
   def merchant
     item_repository.find_merchant_by_merchant_id(merchant_id)
   end
+
+  def best_day
+    max = invoice_items.max_by {|i_item|i_item.quantity}
+    max.invoice.created_at
+  end
 end
