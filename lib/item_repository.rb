@@ -1,5 +1,4 @@
 require_relative 'item'
-require 'pry'
 class ItemRepository
   attr_reader :items, :all_items, :sales_engine
 

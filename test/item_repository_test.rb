@@ -182,4 +182,12 @@ class TestItemRepository < Minitest::Test
     assert_equal 1, item_repo.find_all_by_updated_at(date).first.id
   end
 
+  def test_most_revenue_method_returns_correct_items
+    engine = SalesEngine.new("./data/fixtures")
+    item_repo = engine.item_repository
+    assert_equal Item, item_repo.most_items(3).last.class
+    assert_equal "Item Qui Esse", item_repo.most_items(3).first.name
+    assert_equal "Item Autem Minima", item_repo.most_items(3).last.name
+  end
+
 end
