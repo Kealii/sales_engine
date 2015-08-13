@@ -116,7 +116,7 @@ class ItemRepository
   def sorted_merchant_items
     merchants_with_item_quantities.sort_by do |merchant|
      -(merchant.values[0].to_i)
-   end
+    end
   end
 
   def most_items(x)

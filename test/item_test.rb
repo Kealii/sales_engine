@@ -219,4 +219,34 @@ class TestItem < Minitest::Test
     assert_equal InvoiceItem, item.successful_invoice_items.first.class
     assert_equal 6, item.successful_invoice_items.count
   end
+
+  def test_filtered_invoice_items
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    i_repo = engine.item_repository
+    item = Item.new("1",
+                    "Item Qui Esse",
+                    "Nihil autem sit odio inventore deleniti.",
+                    "75107",
+                    "69",
+                    "2012-03-27 14:53:59 UTC",
+                    "2012-03-27 14:53:59 UTC",
+                    i_repo)
+    assert_equal 4, item.filtered_invoice_items.count
+  end
+
+  def test_total_quantities_method_does_stuff_right
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    i_repo = engine.item_repository
+    item = Item.new("1",
+                    "Item Qui Esse",
+                    "Nihil autem sit odio inventore deleniti.",
+                    "75107",
+                    "69",
+                    "2012-03-27 14:53:59 UTC",
+                    "2012-03-27 14:53:59 UTC",
+                    i_repo)
+    assert_equal 36, item.total_quantities
+  end
 end

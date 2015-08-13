@@ -70,7 +70,16 @@ class Item
     end
   end
 
-  def total_quantities
+  def filtered_invoice_items
+    successful_invoice_items.select do |invoice_item|
+      invoice_item.item_id == id
+    end
+  end
 
+  def total_quantities
+    filtered_invoice_items.inject(0) do |total, invoice_item|
+      total += invoice_item.quantity
+      total
+    end
   end
 end
