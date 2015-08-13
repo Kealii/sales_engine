@@ -38,7 +38,7 @@ class Item
 
   def best_day
     invoice_items.max_by do |invoice_item|
-      invoice_item.quantity.invoice.created_at
-    end
+      invoice_item.quantity
+    end.invoice.created_at
   end
 end
