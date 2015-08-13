@@ -166,7 +166,7 @@ class TestItem < Minitest::Test
                     "2012-03-27 14:53:59 UTC",
                     i_repo)
     assert_equal Transaction, item.transactions.first.class
-    assert_equal 2, item.transactions.count
+    assert_equal 1, item.transactions.count
   end
 
   def test_successful_transactions_method_returns_successful_transactions
@@ -201,7 +201,7 @@ class TestItem < Minitest::Test
                     "2012-03-27 14:53:59 UTC",
                     i_repo)
     assert_equal Invoice, item.successful_invoices.first.class
-    assert_equal 2, item.successful_invoices.count
+    assert_equal 1, item.successful_invoices.count
   end
 
   def test_successful_invoice_items_method_returns_invoice_items
@@ -217,7 +217,7 @@ class TestItem < Minitest::Test
                     "2012-03-27 14:53:59 UTC",
                     i_repo)
     assert_equal InvoiceItem, item.successful_invoice_items.first.class
-    assert_equal 6, item.successful_invoice_items.count
+    assert_equal 3, item.successful_invoice_items.count
   end
 
   def test_filtered_invoice_items
@@ -232,7 +232,7 @@ class TestItem < Minitest::Test
                     "2012-03-27 14:53:59 UTC",
                     "2012-03-27 14:53:59 UTC",
                     i_repo)
-    assert_equal 4, item.filtered_invoice_items.count
+    assert_equal 2, item.filtered_invoice_items.count
   end
 
   def test_total_quantities_method_does_stuff_right
@@ -247,6 +247,6 @@ class TestItem < Minitest::Test
                     "2012-03-27 14:53:59 UTC",
                     "2012-03-27 14:53:59 UTC",
                     i_repo)
-    assert_equal 36, item.total_quantities
+    assert_equal 18, item.total_quantities
   end
 end
