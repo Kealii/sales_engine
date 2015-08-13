@@ -117,5 +117,4 @@ class SalesEngine
   def charge(data, id)
     transaction_repository.charge(data, id)
   end
-
 end

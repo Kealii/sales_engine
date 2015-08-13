@@ -19,15 +19,15 @@ class InvoiceItem
                  updated_at,
                  invoice_item_repository = "")
 
-    @id = id.to_i
-    @item_id = item_id.to_i
-    @invoice_id = invoice_id.to_i
-    @quantity = quantity.to_i
-    @unit_price = BigDecimal.new(unit_price.to_i)/100
-    @created_at = Date.parse(created_at)
-    @updated_at = Date.parse(updated_at)
+    @id                      = id.to_i
+    @item_id                 = item_id.to_i
+    @invoice_id              = invoice_id.to_i
+    @quantity                = quantity.to_i
+    @unit_price              = BigDecimal.new(unit_price.to_i)/100
+    @created_at              = Date.parse(created_at)
+    @updated_at              = Date.parse(updated_at)
     @invoice_item_repository = invoice_item_repository
-    @total = (@unit_price * @quantity)
+    @total                   = (@unit_price * @quantity)
   end
 
   def invoice
@@ -37,5 +37,4 @@ class InvoiceItem
   def item
     invoice_item_repository.find_item_by_item_id(item_id)
   end
-
 end

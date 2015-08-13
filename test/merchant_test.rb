@@ -1,9 +1,6 @@
 require_relative 'test_helper'
 
 class TestMerchant < Minitest::Test
-  # def setup
-  #   null_engine = SalesEngine.new
-  # end
 
   def test_merchant_has_id
     merchant = Merchant.new("1",

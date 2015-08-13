@@ -26,8 +26,9 @@ class TestItemRepository < Minitest::Test
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal "Nihil autem sit odio inventore deleniti.",
-                 item_repo.make_items.first.description
+    description = "Nihil autem sit odio inventore deleniti."
+    first_item = item_repo.make_items.first.description
+    assert_equal description, first_item
   end
 
   def test_we_can_make_item_unit_price_with_table
@@ -85,32 +86,29 @@ class TestItemRepository < Minitest::Test
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal 2,
-    item_repo.find_by_name("Item Autem Minima").id
+    assert_equal 2, item_repo.find_by_name("Item Autem Minima").id
   end
 
   def test_find_by_description_method
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal 2,
-    item_repo.find_by_description("Cumque consequuntur ad.").id
+    item_id = item_repo.find_by_description("Cumque consequuntur ad.").id
+    assert_equal 2, item_id
   end
 
   def test_find_by_unit_price
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal 2,
-    item_repo.find_by_unit_price(670.76).id
+    assert_equal 2, item_repo.find_by_unit_price(670.76).id
   end
 
   def test_find_by_merchant_id_method
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal 1,
-    item_repo.find_by_merchant_id(1).id
+    assert_equal 1, item_repo.find_by_merchant_id(1).id
   end
 
   def test_find_by_created_at_method
@@ -133,40 +131,39 @@ class TestItemRepository < Minitest::Test
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal "Item Qui Esse",
-    item_repo.find_all_by_id(1).first.name
+    assert_equal "Item Qui Esse", item_repo.find_all_by_id(1).first.name
   end
 
   def test_find_all_by_name_method
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal 528,
-    item_repo.find_all_by_name("Item Ea Voluptatum").first.id
+    first_item = item_repo.find_all_by_name("Item Ea Voluptatum").first.id
+    assert_equal 528, first_item
   end
 
   def test_find_all_by_description_method
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal 528,
-    item_repo.find_all_by_description("Sunt officia eum qui molestiae.").first.id
+    description = "Sunt officia eum qui molestiae."
+    item = item_repo.find_all_by_description(description).first.id
+    assert_equal 528, item
   end
 
   def test_find_all_by_unit_price_method
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal 528,
-    item_repo.find_all_by_unit_price(323.01).first.id
+    assert_equal 528, item_repo.find_all_by_unit_price(323.01).first.id
+
   end
 
   def test_find_all_by_merchant_id_method
     data = CSV.read "./data/fixtures/items.csv",
     headers: true, header_converters: :symbol
     item_repo = ItemRepository.new(data)
-    assert_equal 1,
-    item_repo.find_all_by_merchant_id(1).first.id
+    assert_equal 1, item_repo.find_all_by_merchant_id(1).first.id
   end
 
   def test_find_all_by_created_at_method

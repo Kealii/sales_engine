@@ -26,16 +26,20 @@ class TestMerchantRepository < Minitest::Test
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal Date.parse("2012-03-27 14:53:59 UTC"),
-                 merch_repo.make_merchants.last.created_at
+    creation_date = merch_repo.make_merchants.last.created_at
+    parsed_date = Date.parse("2012-03-27 14:53:59 UTC")
+    assert_equal parsed_date, creation_date
+
   end
 
   def test_we_can_make_merchant_update_time_with_table
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal Date.parse("2012-03-27 14:53:59 UTC"),
-                 merch_repo.make_merchants.last.updated_at
+    updated_date = merch_repo.make_merchants.last.updated_at
+    parsed_date = Date.parse("2012-03-27 14:53:59 UTC")
+    assert_equal parsed_date, updated_date
+
   end
 
   def test_all_method
@@ -86,8 +90,8 @@ class TestMerchantRepository < Minitest::Test
     data = CSV.read "./data/fixtures/merchants.csv",
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
-    assert_equal "Klein, Rempel and Jones",
-                 merch_repo.find_all_by_id(2).first.name
+    first_merchant = merch_repo.find_all_by_id(2).first.name
+    assert_equal "Klein, Rempel and Jones", first_merchant
   end
 
   def test_find_all_by_name_method
@@ -110,8 +114,9 @@ class TestMerchantRepository < Minitest::Test
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
     date = Date.parse("2012-03-27 14:53:59 UTC")
-    assert_equal 1,
-    merch_repo.find_all_by_updated_at(date).first.id
+    first_merchant = merch_repo.find_all_by_updated_at(date).first.id
+    assert_equal 1, first_merchant
+
   end
 
   def test_find_all_by_updated_at_method
@@ -119,8 +124,8 @@ class TestMerchantRepository < Minitest::Test
     headers: true, header_converters: :symbol
     merch_repo = MerchantRepository.new(data)
     date = Date.parse("2012-03-27 14:53:59 UTC")
-    assert_equal 1,
-    merch_repo.find_all_by_updated_at(date).first.id
+    first_merchant = merch_repo.find_all_by_updated_at(date).first.id
+    assert_equal 1, first_merchant
   end
 
   def test_all_transactions_contains_transactions
@@ -132,21 +137,25 @@ class TestMerchantRepository < Minitest::Test
   def test_most_revenue_method_returns_collection_of_merchants
     engine = SalesEngine.new("./data/fixtures")
     merch_repo = engine.merchant_repository
-    assert_equal Merchant, merch_repo.all_merchant_revenues.first.keys.first.class
+    class_check = merch_repo.all_merchant_revenues.first.keys.first.class
+    assert_equal Merchant, class_check
   end
 
   def test_all_merchant_revenues_returns_merchants_and_revenues
     engine = SalesEngine.new("./data/fixtures")
     merch_repo = engine.merchant_repository
-    assert_equal "Schroeder-Jerde", merch_repo.all_merchant_revenues.first.keys.first.name
+    first_set = merch_repo.all_merchant_revenues.first.keys.first.name
+    assert_equal "Schroeder-Jerde", first_set
     assert_equal Hash, merch_repo.all_merchant_revenues.first.class
   end
 
   def test_sorted_merchant_revenues_sorts_merchants
     engine = SalesEngine.new("./data/fixtures")
     merch_repo = engine.merchant_repository
-    assert_equal "Higgs Boson", merch_repo.sorted_merchant_revenues.first.keys.first.name
-    assert_equal "Valve", merch_repo.sorted_merchant_revenues.last.keys.first.name
+    first_merchant = merch_repo.sorted_merchant_revenues.first.keys.first.name
+    last_merchant = merch_repo.sorted_merchant_revenues.last.keys.first.name
+    assert_equal "Higgs Boson", first_merchant
+    assert_equal "Valve", last_merchant
   end
 
   def test_most_revenue_method_returns_correct_merchants
@@ -166,9 +175,10 @@ class TestMerchantRepository < Minitest::Test
   def test_sorted_merchant_items_sorts_merchants_by_items_sold
     engine = SalesEngine.new("./data/fixtures")
     merch_repo = engine.merchant_repository
-    assert_equal "Higgs Boson", merch_repo.sorted_merchant_items.first.first.first.name
-    assert_equal "Valve",
-    merch_repo.sorted_merchant_items.last.first.first.name
+    first_merchant = merch_repo.sorted_merchant_items.first.first.first.name
+    last_merchant = merch_repo.sorted_merchant_items.last.first.first.name
+    assert_equal "Higgs Boson", first_merchant
+    assert_equal "Valve", last_merchant
   end
 
   def test_most_revenue_method_returns_correct_merchants
@@ -177,5 +187,4 @@ class TestMerchantRepository < Minitest::Test
     assert_equal "Higgs Boson", merch_repo.most_items(3).first.name
     assert_equal "Willms and Sons", merch_repo.most_items(3).last.name
   end
-
 end

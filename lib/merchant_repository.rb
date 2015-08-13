@@ -3,9 +3,9 @@ class MerchantRepository
   attr_reader :merchants, :all_merchants, :sales_engine
 
   def initialize(csvtable, sales_engine = "")
-    @merchants = csvtable
+    @merchants     = csvtable
     @all_merchants = make_merchants
-    @sales_engine = sales_engine
+    @sales_engine  = sales_engine
   end
 
   def inspect

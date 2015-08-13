@@ -3,9 +3,9 @@ class TransactionRepository
   attr_reader :transactions, :all_transactions, :sales_engine
 
   def initialize(csvtable, sales_engine = "")
-    @transactions = csvtable
+    @transactions     = csvtable
     @all_transactions = make_transactions
-    @sales_engine = sales_engine
+    @sales_engine     = sales_engine
   end
 
   def inspect
@@ -47,8 +47,8 @@ class TransactionRepository
 
   def find_by_credit_card_expiration_date(card_date)
     all.detect do |transaction|
-    transaction.credit_card_expiration_date == card_date
-  end
+      transaction.credit_card_expiration_date == card_date
+    end
   end
 
   def find_by_result(result)
@@ -107,8 +107,6 @@ class TransactionRepository
                                        Time.now.to_s,
                                        self)
 
-   all_transactions << new_transaction
- end
-
-
+    all_transactions << new_transaction
+  end
 end

@@ -17,12 +17,12 @@ class Invoice
                  updated_at,
                  invoice_repository = "")
 
-    @id          = id.to_i
-    @customer_id = customer_id.to_i
-    @merchant_id = merchant_id.to_i
-    @status      = status
-    @created_at  = Date.parse(created_at)
-    @updated_at  = Date.parse(updated_at)
+    @id                 = id.to_i
+    @customer_id        = customer_id.to_i
+    @merchant_id        = merchant_id.to_i
+    @status             = status
+    @created_at         = Date.parse(created_at)
+    @updated_at         = Date.parse(updated_at)
     @invoice_repository = invoice_repository
   end
 

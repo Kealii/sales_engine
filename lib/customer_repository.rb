@@ -3,9 +3,9 @@ class CustomerRepository
   attr_reader :customers, :all_customers, :sales_engine
 
   def initialize(csvtable, sales_engine = "")
-    @customers = csvtable
+    @customers     = csvtable
     @all_customers = make_customers
-    @sales_engine = sales_engine
+    @sales_engine  = sales_engine
   end
 
   def inspect

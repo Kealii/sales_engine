@@ -111,9 +111,9 @@ class TestCustomer < Minitest::Test
                             c_repo)
     assert_equal 3, customer.successful_transactions.count
     assert_equal Transaction, customer.successful_transactions.first.class
-    refute_equal 'failed', customer.successful_transactions.any? do |transacton|
-      transaction.result
-    end
+    success = customer.successful_transactions
+    any_failures = success.any? {|transaction| transaction.result}
+    refute_equal 'failed', any_failures
   end
 
   def test_successful_invoices_returns_invoices_with_successful_transactions

@@ -40,16 +40,16 @@ class TestInvoiceRepository < Minitest::Test
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal Date.parse("2012-03-10 15:54:10 UTC"),
-    invoice_repo.make_invoices.last.created_at
+    date = Date.parse("2012-03-10 15:54:10 UTC")
+    assert_equal date, invoice_repo.make_invoices.last.created_at
   end
 
   def test_we_can_make_invoice_update_time_with_table
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal Date.parse("2012-03-10 15:54:10 UTC"),
-    invoice_repo.make_invoices.last.updated_at
+    date = Date.parse("2012-03-10 15:54:10 UTC")
+    assert_equal date, invoice_repo.make_invoices.last.updated_at
   end
 
   def test_all_method
@@ -77,16 +77,14 @@ class TestInvoiceRepository < Minitest::Test
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal 1,
-    invoice_repo.find_by_customer_id(1).id
+    assert_equal 1, invoice_repo.find_by_customer_id(1).id
   end
 
   def test_find_by_merchant_id_method
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal 1,
-    invoice_repo.find_by_merchant_id(26).id
+    assert_equal 1, invoice_repo.find_by_merchant_id(26).id
   end
 
   def test_find_by_status_method
@@ -101,8 +99,7 @@ class TestInvoiceRepository < Minitest::Test
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
     date = Date.parse("2012-03-25 09:54:09 UTC")
-    assert_equal 1,
-    invoice_repo.find_by_created_at(date).id
+    assert_equal 1, invoice_repo.find_by_created_at(date).id
   end
 
   def test_find_by_updated_at_method
@@ -110,40 +107,35 @@ class TestInvoiceRepository < Minitest::Test
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
     date = Date.parse("2012-03-25 09:54:09 UTC")
-    assert_equal 1,
-    invoice_repo.find_by_updated_at(date).id
+    assert_equal 1, invoice_repo.find_by_updated_at(date).id
   end
 
   def test_find_all_by_id_method
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal 1,
-    invoice_repo.find_all_by_id(2).first.customer_id
+    assert_equal 1, invoice_repo.find_all_by_id(2).first.customer_id
   end
 
   def test_find_all_by_customer_id_method
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal 1,
-    invoice_repo.find_all_by_customer_id(1).first.id
+    assert_equal 1, invoice_repo.find_all_by_customer_id(1).first.id
   end
 
   def test_find_all_by_merchant_id_method
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal 1,
-    invoice_repo.find_all_by_merchant_id(26).first.id
+    assert_equal 1, invoice_repo.find_all_by_merchant_id(26).first.id
   end
 
   def test_find_all_by_status_method
     data = CSV.read "./data/fixtures/invoices.csv",
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
-    assert_equal 1,
-    invoice_repo.find_all_by_status("shipped").first.id
+    assert_equal 1, invoice_repo.find_all_by_status("shipped").first.id
   end
 
   def test_find_all_by_created_at_method
@@ -151,8 +143,7 @@ class TestInvoiceRepository < Minitest::Test
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
     date = Date.parse("2012-03-25 09:54:09 UTC")
-    assert_equal 1,
-    invoice_repo.find_all_by_created_at(date).first.id
+    assert_equal 1, invoice_repo.find_all_by_created_at(date).first.id
   end
 
   def test_find_all_by_updated_at_method
@@ -160,8 +151,6 @@ class TestInvoiceRepository < Minitest::Test
     headers: true, header_converters: :symbol
     invoice_repo = InvoiceRepository.new(data)
     date = Date.parse("2012-03-25 09:54:09 UTC")
-    assert_equal 1,
-    invoice_repo.find_all_by_updated_at(date).first.id
+    assert_equal 1, invoice_repo.find_all_by_updated_at(date).first.id
   end
-
 end

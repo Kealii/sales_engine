@@ -4,8 +4,8 @@ class ItemRepository
   attr_reader :items, :all_items, :sales_engine
 
   def initialize(csvtable, sales_engine = "")
-    @items = csvtable
-    @all_items = make_items
+    @items        = csvtable
+    @all_items    = make_items
     @sales_engine = sales_engine
   end
 

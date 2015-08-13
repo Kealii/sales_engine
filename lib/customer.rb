@@ -13,11 +13,11 @@ class Customer
                  updated_at,
                  customer_repository = "")
 
-    @id            = id.to_i
-    @first_name    = first_name
-    @last_name     = last_name
-    @created_at    = Date.parse(created_at)
-    @updated_at    = Date.parse(updated_at)
+    @id                  = id.to_i
+    @first_name          = first_name
+    @last_name           = last_name
+    @created_at          = Date.parse(created_at)
+    @updated_at          = Date.parse(updated_at)
     @customer_repository = customer_repository
   end
 

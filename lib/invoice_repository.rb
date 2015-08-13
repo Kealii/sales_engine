@@ -3,7 +3,7 @@ class InvoiceRepository
   attr_reader :invoices, :all_invoices, :sales_engine
 
   def initialize(csvtable, sales_engine = "")
-    @invoices = csvtable
+    @invoices     = csvtable
     @all_invoices = make_invoices
     @sales_engine = sales_engine
   end
