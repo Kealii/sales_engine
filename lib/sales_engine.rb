@@ -110,4 +110,8 @@ class SalesEngine
     customer_repository.find_all_by_id(id)
   end
 
+  def add_items(args, invoice_id)
+    invoice_item_repository.add_items(args, invoice_id)
+  end
+
 end

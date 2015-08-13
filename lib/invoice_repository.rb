@@ -100,4 +100,18 @@ class InvoiceRepository
     sales_engine.find_by_merchant_id(id)
   end
 
+  def create(args)
+    invoice = Invoice.new((all_invoices.last.id + 1),
+                        args[:customer].id,
+                        args[:merchant].id,
+                        args[:status],
+                        Time.now.to_s,
+                        Time.now.to_s,
+                        self)
+
+    @all_invoices << invoice
+    sales_engine.add_items(args[:items], invoice.id)
+    invoice
+  end
+
 end

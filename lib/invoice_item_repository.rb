@@ -97,4 +97,18 @@ class InvoiceItemRepository
   def find_item_by_item_id(id)
     sales_engine.find_by_item_id(id)
   end
+
+  def add_items(args, invoice_id)
+    args.each do |item|
+    ii = InvoiceItem.new((all_invoice_items.last.id + 1),
+                         item.id,
+                         invoice_id,
+                         1,
+                         item.unit_price,
+                         Time.now.to_s,
+                         Time.now.to_s,
+                         self)
+      all_invoice_items << ii
+    end
+  end
 end

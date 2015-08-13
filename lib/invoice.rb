@@ -51,4 +51,8 @@ class Invoice
   def merchant
     invoice_repository.find_merchant_by_merchant_id(merchant_id)
   end
+
+  def charge(data)
+    invoice_repository.charge(data, id)
+  end
 end
