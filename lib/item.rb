@@ -82,4 +82,11 @@ class Item
       total
     end
   end
+
+  def total_revenue
+    filtered_invoice_items.inject(0) do |total, invoice_item|
+      total += invoice_item.total
+      total
+    end
+  end
 end

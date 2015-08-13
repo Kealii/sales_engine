@@ -110,6 +110,10 @@ class ItemRepository
     sales_engine.find_all_invoice_items_by_invoice_id(id)
   end
 
+  def most_revenue(x)
+    all.max_by(x){|item| item.total_revenue}
+  end
+
   def most_items(x)
     all.max_by(x){|item| item.total_quantities}
   end
