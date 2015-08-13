@@ -45,7 +45,7 @@ class Item
   def invoices
     invoice_items.flat_map do |invoice_item|
       item_repository.find_all_invoices_by_invoice_id(invoice_item.invoice_id)
-    end
+    end.uniq
   end
 
   def transactions

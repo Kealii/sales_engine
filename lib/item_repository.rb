@@ -1,4 +1,5 @@
 require_relative 'item'
+require 'pry'
 class ItemRepository
   attr_reader :items, :all_items, :sales_engine
 
@@ -106,22 +107,10 @@ class ItemRepository
   end
 
   def find_all_invoice_items_by_invoice_id(id)
-      sales_engine.find_all_invoice_items_by_invoice_id(id)
-  end
-
-  def items_with_item_quantities
-    all.flat_map {|item| {item => item.total_quantities}}
-  end
-
-  def sorted_merchant_items
-    merchants_with_item_quantities.sort_by do |merchant|
-     -(merchant.values[0].to_i)
-    end
+    sales_engine.find_all_invoice_items_by_invoice_id(id)
   end
 
   def most_items(x)
-    sorted_merchant_items.flat_map do |merchant_data|
-      merchant_data.keys
-    end[0..(x-1)]
+    all.max_by(x){|item| item.total_quantities}
   end
 end
