@@ -36,7 +36,7 @@ class TestTransaction < Minitest::Test
     assert_equal Date.parse("2012-03-27 14:54:09 UTC"), transaction.updated_at
   end
 
-  def test_invocie_method
+  def test_invoice_method
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     t_repo = engine.transaction_repository

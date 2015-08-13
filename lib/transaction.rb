@@ -31,6 +31,10 @@ class Transaction
   end
 
   def success?
-    result == "success" ? true : false
+    if result == "success"
+      true
+    else
+      false
+    end
   end
 end

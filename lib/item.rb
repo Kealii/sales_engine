@@ -41,4 +41,45 @@ class Item
       invoice_item.quantity
     end.invoice.created_at
   end
+
+  def invoices
+    invoice_items.flat_map do |invoice_item|
+      item_repository.find_all_invoices_by_invoice_id(invoice_item.invoice_id)
+    end.uniq
+  end
+
+  def transactions
+    invoices.flat_map do |invoice|
+      item_repository.find_all_transactions_by_invoice_id(invoice.id)
+    end
+  end
+
+  def successful_transactions
+    transactions.select {|transaction| transaction.success?}
+  end
+
+  def successful_invoices
+    successful_transactions.flat_map do |transaction|
+      item_repository.find_all_invoices_by_invoice_id(transaction.invoice_id)
+    end
+  end
+
+  def successful_invoice_items
+    successful_invoices.flat_map do |invoice|
+      item_repository.find_all_invoice_items_by_invoice_id(invoice.id)
+    end
+  end
+
+  def filtered_invoice_items
+    successful_invoice_items.select do |invoice_item|
+      invoice_item.item_id == id
+    end
+  end
+
+  def total_quantities
+    filtered_invoice_items.inject(0) do |total, invoice_item|
+      total += invoice_item.quantity
+      total
+    end
+  end
 end
