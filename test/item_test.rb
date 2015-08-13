@@ -137,4 +137,86 @@ class TestItem < Minitest::Test
                     i_repo)
     assert_equal nil, item.merchant
   end
+
+  def test_invoices_method_returns_invoices
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    i_repo = engine.item_repository
+    item = Item.new("1",
+                    "Item Qui Esse",
+                    "Nihil autem sit odio inventore deleniti.",
+                    "75107",
+                    "69",
+                    "2012-03-27 14:53:59 UTC",
+                    "2012-03-27 14:53:59 UTC",
+                    i_repo)
+    assert_equal Invoice, item.invoices.first.class
+  end
+
+  def test_transactions_method_returns_transactions
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    i_repo = engine.item_repository
+    item = Item.new("1",
+                    "Item Qui Esse",
+                    "Nihil autem sit odio inventore deleniti.",
+                    "75107",
+                    "69",
+                    "2012-03-27 14:53:59 UTC",
+                    "2012-03-27 14:53:59 UTC",
+                    i_repo)
+    assert_equal Transaction, item.transactions.first.class
+    assert_equal 2, item.transactions.count
+  end
+
+  def test_successful_transactions_method_returns_successful_transactions
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    i_repo = engine.item_repository
+    item = Item.new("1",
+                    "Item Qui Esse",
+                    "Nihil autem sit odio inventore deleniti.",
+                    "75107",
+                    "69",
+                    "2012-03-27 14:53:59 UTC",
+                    "2012-03-27 14:53:59 UTC",
+                    i_repo)
+    result = item.successful_transactions.any? do |transaction|
+      transaction.result == "failed"
+    end
+    assert_equal Transaction, item.successful_transactions.first.class
+    assert_equal false, result
+  end
+
+  def test_successful_invoices_method_returns_invoices
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    i_repo = engine.item_repository
+    item = Item.new("1",
+                    "Item Qui Esse",
+                    "Nihil autem sit odio inventore deleniti.",
+                    "75107",
+                    "69",
+                    "2012-03-27 14:53:59 UTC",
+                    "2012-03-27 14:53:59 UTC",
+                    i_repo)
+    assert_equal Invoice, item.successful_invoices.first.class
+    assert_equal 2, item.successful_invoices.count
+  end
+
+  def test_successful_invoice_items_method_returns_invoice_items
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    i_repo = engine.item_repository
+    item = Item.new("1",
+                    "Item Qui Esse",
+                    "Nihil autem sit odio inventore deleniti.",
+                    "75107",
+                    "69",
+                    "2012-03-27 14:53:59 UTC",
+                    "2012-03-27 14:53:59 UTC",
+                    i_repo)
+    assert_equal InvoiceItem, item.successful_invoice_items.first.class
+    assert_equal 6, item.successful_invoice_items.count
+  end
 end
