@@ -97,4 +97,18 @@ class TransactionRepository
     sales_engine.find_by_invoice_id(id)
   end
 
+  def charge(data, invoice_id)
+     new_transaction = Transaction.new((all_transactions.last.id + 1),
+                                       invoice_id,
+                                       data[:credit_card_number],
+                                       data[:credit_card_expiration],
+                                       data[:result],
+                                       Time.now.to_s,
+                                       Time.now.to_s,
+                                       self)
+
+   all_transactions << new_transaction
+ end
+
+
 end

@@ -114,4 +114,8 @@ class SalesEngine
     invoice_item_repository.add_items(args, invoice_id)
   end
 
+  def charge(data, id)
+    transaction_repository.charge(data, id)
+  end
+
 end

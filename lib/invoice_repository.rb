@@ -114,4 +114,7 @@ class InvoiceRepository
     invoice
   end
 
+  def charge(data, id)
+    sales_engine.charge(data, id)
+  end
 end
